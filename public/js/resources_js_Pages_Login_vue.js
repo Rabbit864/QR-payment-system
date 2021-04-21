@@ -19,8 +19,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'login'
+  name: 'login',
+  data: function data() {
+    return {};
+  },
+  methods: {
+    AuthProvider: function AuthProvider(provider) {
+      var self = this;
+      this.$auth.authenticate(provider).then(function (response) {
+        self.SocialLogin(provider, response);
+      })["catch"](function (err) {
+        console.log({
+          err: err
+        });
+      });
+    },
+    SocialLogin: function SocialLogin(provider, response) {
+      this.$http.post('api/sociallogin/' + provider, response).then(function (response) {})["catch"](function (err) {
+        console.log({
+          err: err
+        });
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -113,22 +136,25 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "login" }, [
-        _c("a", { staticClass: "button-login", attrs: { href: "" } }, [
-          _vm._v("Войти через Google")
-        ])
-      ])
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "login" }, [
+      _c("h1", [_vm._v("Вход")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          on: {
+            click: function($event) {
+              return _vm.AuthProvider("google")
+            }
+          }
+        },
+        [_vm._v("auth Google")]
+      )
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
