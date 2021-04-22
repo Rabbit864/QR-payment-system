@@ -1,8 +1,20 @@
+
+
+const ifNotAuthenticated = (to, from, next) => {
+    if (!localStorage.getItem('token')) {
+      next()
+      return
+    }
+    next('/dashboard')
+  }
+
+
 const routes = [
     {
         path: '/',
         component: () => import('../Pages/Login.vue'),
-        name: 'login'
+        name: 'login',
+        beforeEnter: ifNotAuthenticated
     },
     {
         path: '/auth/:provider/callback',

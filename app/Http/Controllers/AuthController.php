@@ -19,13 +19,15 @@ class AuthController extends Controller
         $existingUser = User::where('email', $user->email)->first();
 
         if(!$existingUser){
-            User::create([
+            $existingUser = User::create([
                 'name' => $user->name,
                 'email'=> $user->email,
                 'google_id' => $user->id
             ]);
         }
-        return response()->json($user);
+
+        $token = $existingUser->createToken($existingUser->email)->plainTextToken;
+        return response()->json($token);
     }
 
 }

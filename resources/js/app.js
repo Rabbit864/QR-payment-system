@@ -7,9 +7,15 @@ import VueAxios from 'vue-axios';
 import axios from 'axios'
 
 
+import store from './Store/index'
 import router from './Router/index';
 import App from './App.vue';
 
+
+const token = localStorage.getItem('token')
+if (token) {
+  Vue.prototype.$http.defaults.headers.common['Authorization'] = token
+}
 Vue.use(VueAxios, axios);
 Vue.use(VueRouter);
 Vue.use(VueSocialauth, {
@@ -24,6 +30,7 @@ Vue.use(VueSocialauth, {
 
 const app = new Vue({
     el: '#app',
+    store,
     router,
     components: { App }
 });

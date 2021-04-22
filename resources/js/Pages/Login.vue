@@ -2,7 +2,7 @@
     <div class="container">
         <div class="login">
             <h1>Вход</h1>
-            <button @click="AuthProvider('google')">auth Google</button>
+            <button @click="AuthProvider('google')" class="button-login" >auth Google</button>
         </div>
     </div>
 </template>
@@ -25,7 +25,11 @@ export default {
         },
         SocialLogin(provider,response){
             this.$http.post('api/sociallogin/'+provider,response).then(response => {
+                const token = response.data;
+                localStorage.setItem('user-token', token);
+                this.$router.push('/dashboard');
             }).catch(err => {
+                localStorage.removeItem('user-token')
                 console.log({err:err})
             })
         }
