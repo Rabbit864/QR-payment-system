@@ -10,11 +10,9 @@ class AuthController extends Controller
 {
     public function SocialSignup()
     {
-        try {
-            $user = Socialite::driver('google')->stateless()->user();
-        } catch (\Exception $e) {
 
-        }
+        $user = Socialite::driver('google')->stateless()->user();
+
 
         $existingUser = User::where('email', $user->email)->first();
 
