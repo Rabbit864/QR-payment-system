@@ -41,11 +41,11 @@ __webpack_require__.r(__webpack_exports__);
 
       this.$http.post('api/sociallogin/' + provider, response).then(function (response) {
         var token = response.data;
-        localStorage.setItem('user-token', token);
+        localStorage.setItem('token', token);
 
         _this.$router.push('/dashboard');
       })["catch"](function (err) {
-        localStorage.removeItem('user-token');
+        localStorage.removeItem('token');
         console.log({
           err: err
         });

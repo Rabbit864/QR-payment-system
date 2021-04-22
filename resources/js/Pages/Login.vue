@@ -26,10 +26,10 @@ export default {
         SocialLogin(provider,response){
             this.$http.post('api/sociallogin/'+provider,response).then(response => {
                 const token = response.data;
-                localStorage.setItem('user-token', token);
+                localStorage.setItem('token', token);
                 this.$router.push('/dashboard');
             }).catch(err => {
-                localStorage.removeItem('user-token')
+                localStorage.removeItem('token')
                 console.log({err:err})
             })
         }

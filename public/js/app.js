@@ -1987,6 +1987,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
+vue__WEBPACK_IMPORTED_MODULE_6__.default.prototype.$http = (axios__WEBPACK_IMPORTED_MODULE_2___default());
 var token = localStorage.getItem('token');
 
 if (token) {

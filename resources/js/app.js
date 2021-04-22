@@ -11,10 +11,10 @@ import store from './Store/index'
 import router from './Router/index';
 import App from './App.vue';
 
-
+Vue.prototype.$http = axios;
 const token = localStorage.getItem('token')
 if (token) {
-  Vue.prototype.$http.defaults.headers.common['Authorization'] = token
+  Vue.prototype.$http.defaults.headers.common['Authorization'] = token;
 }
 Vue.use(VueAxios, axios);
 Vue.use(VueRouter);
