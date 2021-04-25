@@ -23,15 +23,6 @@ class User extends Authenticatable
         'google_id',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'remember_token',
-    ];
-
     public function products()
     {
         $this->hasMany(Product::class);

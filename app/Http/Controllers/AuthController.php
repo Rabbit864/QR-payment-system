@@ -13,7 +13,6 @@ class AuthController extends Controller
 
         $user = Socialite::driver('google')->stateless()->user();
 
-
         $existingUser = User::where('email', $user->email)->first();
 
         if(!$existingUser){
@@ -25,6 +24,7 @@ class AuthController extends Controller
         }
 
         $token = $existingUser->createToken($existingUser->email)->plainTextToken;
+
         return response()->json($token);
     }
 

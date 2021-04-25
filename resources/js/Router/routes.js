@@ -1,5 +1,3 @@
-
-
 const ifNotAuthenticated = (to, from, next) => {
     if (!localStorage.getItem('token')) {
       next()
