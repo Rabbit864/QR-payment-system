@@ -20,8 +20,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'login',
+  name: "login",
   data: function data() {
     return {};
   },
@@ -39,13 +41,13 @@ __webpack_require__.r(__webpack_exports__);
     SocialLogin: function SocialLogin(provider, response) {
       var _this = this;
 
-      this.$http.post('api/sociallogin/' + provider, response).then(function (response) {
+      this.$http.post("api/sociallogin/" + provider, response).then(function (response) {
         var token = response.data;
-        localStorage.setItem('token', token);
+        localStorage.setItem("token", token);
 
-        _this.$router.push('/dashboard');
+        _this.$router.push("/dashboard");
       })["catch"](function (err) {
-        localStorage.removeItem('token');
+        localStorage.removeItem("token");
         console.log({
           err: err
         });
@@ -158,7 +160,7 @@ var render = function() {
             }
           }
         },
-        [_vm._v("auth Google")]
+        [_vm._v("\n      auth Google\n    ")]
       )
     ])
   ])

@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
 
     <title>{{env('APP_NAME')}}</title>
