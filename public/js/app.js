@@ -1947,11 +1947,54 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_1__.default.use(vuex__WEBPACK_IMPORTED_MODULE_2__.default);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new vuex__WEBPACK_IMPORTED_MODULE_2__.default.Store({
   state: {
-    status: '',
+    user: null,
     token: localStorage.getItem('token') || ''
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    logout: function logout(state) {
+      state.token = '';
+    },
+    auth_success: function auth_success(state, data) {
+      state.token = data.token;
+      state.user = data.user;
+    }
+  },
+  actions: {
+    login: function login(_ref, userData) {
+      var commit = _ref.commit;
+      return new Promise(function (resolve, reject) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default()({
+          url: 'http://localhost:8000/api/sociallogin/google',
+          method: 'POST',
+          data: userData
+        }).then(function (resp) {
+          var token = resp.data.token;
+          var user = resp.data.user;
+          localStorage.setItem('token', token);
+          (axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.headers.common.Authorization) = token;
+          console.log(user);
+          commit('auth_success', {
+            token: token,
+            user: user
+          });
+          resolve(resp);
+        })["catch"](function (err) {
+          console.log('eror');
+          localStorage.removeItem('token');
+          reject(err);
+        });
+      });
+    },
+    logout: function logout(_ref2) {
+      var commit = _ref2.commit;
+      return new Promise(function (resolve, reject) {
+        commit('logout');
+        localStorage.removeItem('token');
+        delete (axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.headers.common.Authorization);
+        resolve();
+      });
+    }
+  },
   getters: {
     isLoggedIn: function isLoggedIn(state) {
       return !!state.token;
@@ -1995,6 +2038,9 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
+window.axios.defaults.withCredentials = true;
+window.axios.defaults.baseURL = 'http://localhost:8000/';
+window.axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
 vue__WEBPACK_IMPORTED_MODULE_7__.default.prototype.$http = (axios__WEBPACK_IMPORTED_MODULE_2___default());
 var token = localStorage.getItem('token');
 

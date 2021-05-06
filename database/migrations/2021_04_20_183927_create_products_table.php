@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('name',150);
             $table->integer('cost');
             $table->integer('count');
+            $table->string('image',255);
             $table->text('description')->nullable();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();

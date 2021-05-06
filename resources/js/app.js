@@ -13,6 +13,9 @@ import store from './Store/index';
 import router from './Router/index';
 import App from './App.vue';
 
+window.axios.defaults.withCredentials = true;
+window.axios.defaults.baseURL = 'http://localhost:8000/';
+window.axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
 Vue.prototype.$http = axios;
 const token = localStorage.getItem('token');
 if (token) {

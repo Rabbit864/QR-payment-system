@@ -22,6 +22,7 @@
           <td>{{ product.cost }}</td>
           <td>{{ product.count }}</td>
           <td>{{ product.description }}</td>
+          <td><img :src="`data:image/png;base64,${product.qr}`" alt=""></td>
         </tr>
       </tbody>
     </v-simple-table>
@@ -43,12 +44,10 @@ export default {
     generate() {
       let formData = new FormData();
       formData.append("file", this.files);
+      axios.get('/sanctum/csrf-cookie');
       axios
         .post("api/generateProducts", formData, {
           headers: {
-            "X-CSRF-TOKEN": document
-              .querySelector('meta[name="csrf-token"]')
-              .getAttribute("content"),
             "X-Requested-With": "XMLHttpRequest",
           },
         })

@@ -42,6 +42,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -59,9 +60,9 @@ __webpack_require__.r(__webpack_exports__);
 
       var formData = new FormData();
       formData.append("file", this.files);
+      axios.get('/sanctum/csrf-cookie');
       axios.post("api/generateProducts", formData, {
         headers: {
-          "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content"),
           "X-Requested-With": "XMLHttpRequest"
         }
       }).then(function (response) {
@@ -326,7 +327,16 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(product.count))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(product.description))])
+                  _c("td", [_vm._v(_vm._s(product.description))]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c("img", {
+                      attrs: {
+                        src: "data:image/png;base64," + product.qr,
+                        alt: ""
+                      }
+                    })
+                  ])
                 ])
               }),
               0

@@ -28,15 +28,11 @@ export default {
         });
     },
     SocialLogin(provider, response) {
-      this.$http
-        .post("api/sociallogin/" + provider, response)
-        .then((response) => {
-          const token = response.data;
-          localStorage.setItem("token", token);
+      this.$store.dispatch('login', response)
+        .then(() => {
           this.$router.push("/dashboard");
         })
         .catch((err) => {
-          localStorage.removeItem("token");
           console.log({ err: err });
         });
     },
