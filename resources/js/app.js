@@ -17,7 +17,7 @@ window.axios.defaults.withCredentials = true;
 window.axios.defaults.baseURL = 'http://localhost:8000/';
 window.axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
 Vue.prototype.$http = axios;
-const token = localStorage.getItem('token');
+const token = localStorage.getItem('vuex').token;
 if (token) {
     Vue.prototype.$http.defaults.headers.common['Authorization'] = token;
 }

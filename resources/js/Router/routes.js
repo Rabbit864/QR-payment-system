@@ -1,10 +1,11 @@
 const ifNotAuthenticated = (to, from, next) => {
-    if (!localStorage.getItem('token')) {
-      next()
-      return
+    const vuex = localStorage.getItem('vuex');
+    if (!JSON.parse(vuex).token) {
+        next();
+        return;
     }
-    next('/dashboard')
-  }
+    next('/dashboard');
+}
 
 
 const routes = [
@@ -24,6 +25,11 @@ const routes = [
         component: () => import('../Pages/Dashboard.vue'),
         name: 'dashboard'
     },
+    {
+        path: '/showcase',
+        component: () => import('../Pages/Showcase.vue'),
+        name: 'showcase'
+    }
 ];
 
 export default routes;

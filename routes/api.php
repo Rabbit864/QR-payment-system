@@ -21,3 +21,5 @@ Route::post('sociallogin/google', [AuthController::class, 'SocialSignup']);
 
 Route::post('generateProducts', [ProductController::class, 'generate']);
 
+Route::get('user/{user}/products', [ProductController::class, 'index']);
+

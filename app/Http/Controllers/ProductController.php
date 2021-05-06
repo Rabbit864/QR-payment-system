@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\User;
 use QrCode;
 
 class ProductController extends Controller
 {
-    public function generate(Request $request) {
+    public function generate(Request $request)
+    {
 
         $file = $request->file('file');
 
@@ -46,4 +48,11 @@ class ProductController extends Controller
 
         return response()->json($products);
     }
+
+    public function index(User $user)
+    {
+        $products = Product::where('user_id', $user->id)->get();
+        return response()->json($products);
+    }
+
 }

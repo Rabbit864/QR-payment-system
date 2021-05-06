@@ -1,19 +1,9 @@
 <template>
   <div class="container">
     <nav-bar></nav-bar>
-    <v-file-input
-      chips
-      truncate-length="19"
-      label="Загрузите csv файл продукта"
-      ref="file"
-      v-model="files"
-      class="mt-5"
-    ></v-file-input>
-    <v-btn elevation="2" outlined @click="generate()">Сгенирировать</v-btn>
-
-    <v-simple-table class="products mt-3" v-if="products.length > 0">
+    <v-simple-table class="products mt-3">
       <caption>
-        Ваши загруженные товары
+        Ваши товары
       </caption>
       <thead>
         <tr>
@@ -29,7 +19,6 @@
           <td>{{ product.cost }}</td>
           <td>{{ product.count }}</td>
           <td>{{ product.description }}</td>
-          <td><img :src="`data:image/png;base64,${product.qr}`" alt="" /></td>
         </tr>
       </tbody>
     </v-simple-table>
@@ -43,22 +32,22 @@ export default {
   components: { NavBar },
   data() {
     return {
-      files: [],
       products: [],
     };
   },
   methods: {
-    generate() {
-      let formData = new FormData();
-      formData.append("file", this.files);
-      axios
-        .post("api/generateProducts", formData)
-        .then((response) => {
+    async read() {
+      const url = `api/user/${this.$store.state.user.id}/products`;
+      axios.get(url).then((response) => {
           response.data.forEach((product) => this.products.push(product));
         })
-        .catch(function () {});
+        .catch(function () {
+          console.log("FAILURE!!");
+        });;
     },
   },
+  created() {
+    this.read();
+  }
 };
 </script>
-

@@ -43,6 +43,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -60,19 +67,11 @@ __webpack_require__.r(__webpack_exports__);
 
       var formData = new FormData();
       formData.append("file", this.files);
-      axios.get('/sanctum/csrf-cookie');
-      axios.post("api/generateProducts", formData, {
-        headers: {
-          "X-Requested-With": "XMLHttpRequest"
-        }
-      }).then(function (response) {
+      axios.post("api/generateProducts", formData).then(function (response) {
         response.data.forEach(function (product) {
           return _this.products.push(product);
         });
-        console.log(response.data);
-      })["catch"](function () {
-        console.log("FAILURE!!");
-      });
+      })["catch"](function () {});
     }
   }
 });
@@ -97,8 +96,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "tabAlignments"
+  name: "tabAlignments",
+  computed: {
+    currentUser: function currentUser() {
+      return this.$store.state.user;
+    }
+  }
 });
 
 /***/ }),
@@ -373,9 +378,11 @@ var render = function() {
   return _c(
     "v-tabs",
     [
-      _c("v-tab", [_vm._v("Главная")]),
+      _c("v-tab", { attrs: { to: "/dashboard" } }, [_vm._v("Главная")]),
       _vm._v(" "),
-      _c("v-tab", [_vm._v("Склад")])
+      _c("v-tab", { attrs: { to: "/showcase" } }, [_vm._v("Витрина")]),
+      _vm._v(" "),
+      _c("v-tab", [_vm._v(" " + _vm._s(_vm.currentUser.name) + " ")])
     ],
     1
   )
