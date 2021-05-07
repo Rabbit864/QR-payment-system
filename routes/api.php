@@ -23,3 +23,5 @@ Route::post('generateProducts', [ProductController::class, 'generate']);
 
 Route::get('user/{user}/products', [ProductController::class, 'index']);
 
+Route::get('/products/{product}', [ProductController::class, 'show']);
+

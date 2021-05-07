@@ -67,6 +67,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var formData = new FormData();
       formData.append("file", this.files);
+      formData.append("user_id", this.$store.state.user.id);
       axios.post("api/generateProducts", formData).then(function (response) {
         response.data.forEach(function (product) {
           return _this.products.push(product);

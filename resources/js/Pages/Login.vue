@@ -28,7 +28,8 @@ export default {
         });
     },
     SocialLogin(provider, response) {
-      this.$store.dispatch('login', response)
+      this.$store
+        .dispatch("login", response)
         .then(() => {
           this.$router.push("/dashboard");
         })

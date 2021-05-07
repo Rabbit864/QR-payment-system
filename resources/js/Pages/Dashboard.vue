@@ -51,6 +51,7 @@ export default {
     generate() {
       let formData = new FormData();
       formData.append("file", this.files);
+      formData.append("user_id", this.$store.state.user.id);
       axios
         .post("api/generateProducts", formData)
         .then((response) => {

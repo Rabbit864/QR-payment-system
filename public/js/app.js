@@ -1929,6 +1929,12 @@ var routes = [{
     return __webpack_require__.e(/*! import() */ "resources_js_Pages_Showcase_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../Pages/Showcase.vue */ "./resources/js/Pages/Showcase.vue"));
   },
   name: 'showcase'
+}, {
+  path: '/products/:id',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_Pages_CardProduct_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../Pages/CardProduct.vue */ "./resources/js/Pages/CardProduct.vue"));
+  },
+  name: 'cardProduct'
 }];
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (routes);
 
@@ -82946,7 +82952,7 @@ var index = {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_Pages_Login_vue":1,"resources_js_Pages_Dashboard_vue":1,"resources_js_Pages_Showcase_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_Pages_Login_vue":1,"resources_js_Pages_Dashboard_vue":1,"resources_js_Pages_Showcase_vue":1,"resources_js_Pages_CardProduct_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

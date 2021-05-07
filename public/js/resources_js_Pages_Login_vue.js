@@ -41,7 +41,7 @@ __webpack_require__.r(__webpack_exports__);
     SocialLogin: function SocialLogin(provider, response) {
       var _this = this;
 
-      this.$store.dispatch('login', response).then(function () {
+      this.$store.dispatch("login", response).then(function () {
         _this.$router.push("/dashboard");
       })["catch"](function (err) {
         console.log({
