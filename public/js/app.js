@@ -1899,6 +1899,11 @@ __webpack_require__.r(__webpack_exports__);
 var ifNotAuthenticated = function ifNotAuthenticated(to, from, next) {
   var vuex = localStorage.getItem('vuex');
 
+  if (!vuex) {
+    next();
+    return;
+  }
+
   if (!JSON.parse(vuex).token) {
     next();
     return;
@@ -2056,10 +2061,12 @@ window.axios.defaults.withCredentials = true;
 window.axios.defaults.baseURL = 'http://localhost:8000/';
 window.axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
 vue__WEBPACK_IMPORTED_MODULE_7__.default.prototype.$http = (axios__WEBPACK_IMPORTED_MODULE_2___default());
-var token = localStorage.getItem('vuex').token;
+var vuex = localStorage.getItem('vuex');
 
-if (token) {
-  vue__WEBPACK_IMPORTED_MODULE_7__.default.prototype.$http.defaults.headers.common.Authorization = token;
+if (vuex) {
+  if (vuex.token) {
+    vue__WEBPACK_IMPORTED_MODULE_7__.default.prototype.$http.defaults.headers.common.Authorization = token;
+  }
 }
 
 vue__WEBPACK_IMPORTED_MODULE_7__.default.use((vuetify__WEBPACK_IMPORTED_MODULE_8___default()));
