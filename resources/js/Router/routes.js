@@ -8,6 +8,14 @@ const ifNotAuthenticated = (to, from, next) => {
     next('/dashboard');
 }
 
+const ifAuthenticated = (to, from, next) => {
+    if (store.state.token) {
+        next();
+        return;
+    }
+    next('/');
+}
+
 
 const routes = [
     {
@@ -24,17 +32,20 @@ const routes = [
     {
         path: '/dashboard',
         component: () => import('../Pages/Dashboard.vue'),
-        name: 'dashboard'
+        name: 'dashboard',
+        beforeEnter: ifAuthenticated
     },
     {
         path: '/showcase',
         component: () => import('../Pages/Showcase.vue'),
-        name: 'showcase'
+        name: 'showcase',
+        beforeEnter: ifAuthenticated
     },
     {
         path: '/products/:id',
         component: () => import('../Pages/CardProduct.vue'),
-        name: 'cardProduct'
+        name: 'cardProduct',
+        beforeEnter: ifAuthenticated
     }
 ];
 

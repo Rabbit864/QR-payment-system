@@ -1908,6 +1908,15 @@ var ifNotAuthenticated = function ifNotAuthenticated(to, from, next) {
   next('/dashboard');
 };
 
+var ifAuthenticated = function ifAuthenticated(to, from, next) {
+  if (_Store_index__WEBPACK_IMPORTED_MODULE_0__.default.state.token) {
+    next();
+    return;
+  }
+
+  next('/');
+};
+
 var routes = [{
   path: '/',
   component: function component() {
@@ -1923,19 +1932,22 @@ var routes = [{
   component: function component() {
     return __webpack_require__.e(/*! import() */ "resources_js_Pages_Dashboard_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../Pages/Dashboard.vue */ "./resources/js/Pages/Dashboard.vue"));
   },
-  name: 'dashboard'
+  name: 'dashboard',
+  beforeEnter: ifAuthenticated
 }, {
   path: '/showcase',
   component: function component() {
     return __webpack_require__.e(/*! import() */ "resources_js_Pages_Showcase_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../Pages/Showcase.vue */ "./resources/js/Pages/Showcase.vue"));
   },
-  name: 'showcase'
+  name: 'showcase',
+  beforeEnter: ifAuthenticated
 }, {
   path: '/products/:id',
   component: function component() {
     return __webpack_require__.e(/*! import() */ "resources_js_Pages_CardProduct_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../Pages/CardProduct.vue */ "./resources/js/Pages/CardProduct.vue"));
   },
-  name: 'cardProduct'
+  name: 'cardProduct',
+  beforeEnter: ifAuthenticated
 }];
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (routes);
 
