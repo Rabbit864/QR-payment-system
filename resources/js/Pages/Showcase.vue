@@ -19,6 +19,7 @@
           <td>{{ product.cost }}</td>
           <td>{{ product.count }}</td>
           <td>{{ product.description }}</td>
+          <td><img :src="`data:image/png;base64,${product.qr}`" alt="qr" /></td>
         </tr>
       </tbody>
     </v-simple-table>

@@ -98,11 +98,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "tabAlignments",
   computed: {
     currentUser: function currentUser() {
       return this.$store.state.user;
+    },
+    isLoggedIn: function isLoggedIn() {
+      return this.$store.getters.isLoggedIn;
+    }
+  },
+  methods: {
+    logout: function logout() {
+      var _this = this;
+
+      this.$store.dispatch("logout").then(function () {
+        _this.$router.push("/");
+      })["catch"](function (err) {
+        console.log({
+          err: err
+        });
+      });
     }
   }
 });
@@ -339,7 +366,7 @@ var render = function() {
                     _c("img", {
                       attrs: {
                         src: "data:image/png;base64," + product.qr,
-                        alt: ""
+                        alt: "qr"
                       }
                     })
                   ])
@@ -383,7 +410,58 @@ var render = function() {
       _vm._v(" "),
       _c("v-tab", { attrs: { to: "/showcase" } }, [_vm._v("Витрина")]),
       _vm._v(" "),
-      _c("v-tab", [_vm._v(" " + _vm._s(_vm.currentUser.name) + " ")])
+      _c(
+        "v-menu",
+        {
+          attrs: { "offset-y": "", "open-on-hover": "" },
+          scopedSlots: _vm._u([
+            {
+              key: "activator",
+              fn: function(ref) {
+                var menu = ref.on
+                var attrs = ref.attrs
+                return [
+                  _vm.isLoggedIn
+                    ? _c(
+                        "v-tab",
+                        _vm._g(
+                          _vm._b({}, "v-tab", attrs, false),
+                          Object.assign({}, menu)
+                        ),
+                        [
+                          _vm._v(
+                            "\n        " +
+                              _vm._s(_vm.currentUser.name) +
+                              "\n      "
+                          )
+                        ]
+                      )
+                    : _vm._e()
+                ]
+              }
+            }
+          ])
+        },
+        [
+          _vm._v(" "),
+          _c(
+            "v-list",
+            [
+              _c(
+                "v-list-item",
+                [
+                  _c("v-list-item-title", { on: { click: _vm.logout } }, [
+                    _vm._v("Выход")
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
     ],
     1
   )

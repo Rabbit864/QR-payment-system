@@ -36,7 +36,7 @@ class ProductController extends Controller
                 'count' => $count,
                 'description' => $description,
                 'image' => $image,
-                'user_id' => 1
+                'user_id' => $request->user_id
             ]);
 
             $url = url("/products/{$product->id}");
@@ -52,6 +52,12 @@ class ProductController extends Controller
     public function index(User $user)
     {
         $products = Product::where('user_id', $user->id)->get();
+        foreach($products as $product){
+            $url = url("/products/{$product->id}");
+            $qr = QrCode::format('png')->size(100)->generate($url);
+            $qr = base64_encode($qr);
+            $product['qr'] = $qr;
+        }
         return response()->json($products);
     }
 

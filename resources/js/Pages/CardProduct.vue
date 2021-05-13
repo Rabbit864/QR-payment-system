@@ -3,7 +3,7 @@
     <v-card class="mx-auto my-12" max-width="374">
       <v-img
         height="250"
-        src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
+        :src="`${ this.image }`"
       ></v-img>
       <v-card-title>
         <div class="font-weight-black">{{ this.name }}</div>
@@ -28,7 +28,7 @@ export default {
       name: "",
       cost: "",
       description: "",
-      img: "",
+      image: "",
     };
   },
   methods: {
@@ -41,7 +41,7 @@ export default {
           this.name = product.name;
           this.cost = product.cost;
           this.description = product.description;
-          this.img = product.image;
+          this.image = product.image;
         })
         .catch(function () {});
     },

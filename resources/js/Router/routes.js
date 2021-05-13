@@ -1,10 +1,7 @@
+import store from '../Store/index';
+
 const ifNotAuthenticated = (to, from, next) => {
-    const vuex = localStorage.getItem('vuex');
-    if(!vuex){
-        next();
-        return;
-    }
-    if (!JSON.parse(vuex).token) {
+    if (!store.state.token) {
         next();
         return;
     }

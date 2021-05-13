@@ -68,7 +68,7 @@ __webpack_require__.r(__webpack_exports__);
       name: "",
       cost: "",
       description: "",
-      img: ""
+      image: ""
     };
   },
   methods: {
@@ -81,7 +81,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.name = product.name;
         _this.cost = product.cost;
         _this.description = product.description;
-        _this.img = product.image;
+        _this.image = product.image;
       })["catch"](function () {});
     }
   },
@@ -351,12 +351,7 @@ var render = function() {
         "v-card",
         { staticClass: "mx-auto my-12", attrs: { "max-width": "374" } },
         [
-          _c("v-img", {
-            attrs: {
-              height: "250",
-              src: "https://cdn.vuetifyjs.com/images/cards/cooking.png"
-            }
-          }),
+          _c("v-img", { attrs: { height: "250", src: "" + this.image } }),
           _vm._v(" "),
           _c("v-card-title", [
             _c("div", { staticClass: "font-weight-black" }, [
