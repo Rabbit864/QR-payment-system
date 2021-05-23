@@ -29,7 +29,7 @@ Vue.use(VueRouter);
 Vue.use(VueSocialauth, {
     providers: {
         google: {
-            clientId: '333429272007-it580ggnm02d3ibs6dfpdppkruc99fmk.apps.googleusercontent.com',
+            clientId: config.googleClientId,
             redirectUri: config.redirectGoogle
         }
     }

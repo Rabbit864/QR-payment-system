@@ -23,7 +23,7 @@ export default new Vuex.Store({
     actions: {
         login({ commit }, userData) {
             return new Promise((resolve, reject) => {
-                axios({ url: 'http://localhost:8000/api/sociallogin/google', method: 'POST', data: userData })
+                axios({ url: 'api/sociallogin/google', method: 'POST', data: userData })
                     .then(resp => {
                         const token = resp.data.token;
                         const user = resp.data.user;

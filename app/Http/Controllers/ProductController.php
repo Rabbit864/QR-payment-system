@@ -39,7 +39,7 @@ class ProductController extends Controller
                 'user_id' => $request->user_id
             ]);
 
-            $url = url("/products/{$product->id}");
+            $url = env("QR_URL") . "/products/{$product->id}";
             $qr = QrCode::format('png')->size(100)->generate($url);
             $qr = base64_encode($qr);
             $product['qr'] = $qr;
@@ -53,7 +53,7 @@ class ProductController extends Controller
     {
         $products = Product::where('user_id', $user->id)->get();
         foreach($products as $product){
-            $url = url("/products/{$product->id}");
+            $url = env("QR_URL") . "/products/{$product->id}";
             $qr = QrCode::format('png')->size(100)->generate($url);
             $qr = base64_encode($qr);
             $product['qr'] = $qr;

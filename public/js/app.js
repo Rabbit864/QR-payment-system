@@ -1994,7 +1994,7 @@ vue__WEBPACK_IMPORTED_MODULE_2__.default.use(vuex__WEBPACK_IMPORTED_MODULE_3__.d
       var commit = _ref.commit;
       return new Promise(function (resolve, reject) {
         axios__WEBPACK_IMPORTED_MODULE_0___default()({
-          url: 'http://localhost:8000/api/sociallogin/google',
+          url: 'api/sociallogin/google',
           method: 'POST',
           data: userData
         }).then(function (resp) {
@@ -2084,7 +2084,7 @@ vue__WEBPACK_IMPORTED_MODULE_8__.default.use(vue_router__WEBPACK_IMPORTED_MODULE
 vue__WEBPACK_IMPORTED_MODULE_8__.default.use(vue_social_auth__WEBPACK_IMPORTED_MODULE_0__.default, {
   providers: {
     google: {
-      clientId: '333429272007-it580ggnm02d3ibs6dfpdppkruc99fmk.apps.googleusercontent.com',
+      clientId: (_vue_config__WEBPACK_IMPORTED_MODULE_4___default().googleClientId),
       redirectUri: (_vue_config__WEBPACK_IMPORTED_MODULE_4___default().redirectGoogle)
     }
   }
@@ -2121,7 +2121,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 module.exports = {
   baseUrl: "http://localhost:8000/",
-  redirectGoogle: 'http://localhost:8000/auth/google/callback'
+  redirectGoogle: 'http://localhost:8000/auth/google/callback',
+  googleClientId: '333429272007-it580ggnm02d3ibs6dfpdppkruc99fmk.apps.googleusercontent.com'
 };
 
 /***/ }),
