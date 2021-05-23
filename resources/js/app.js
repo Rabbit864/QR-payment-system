@@ -8,13 +8,13 @@ import axios from 'axios';
 import Vuetify from "vuetify";
 import "vuetify/dist/vuetify.min.css";
 
-
+import config from './vue.config';
 import store from './Store/index';
 import router from './Router/index';
 import App from './App.vue';
 
 window.axios.defaults.withCredentials = true;
-window.axios.defaults.baseURL = 'http://localhost:8000/';
+window.axios.defaults.baseURL = config.baseUrl;
 window.axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
 Vue.prototype.$http = axios;
 const token = store.state.token;
@@ -30,7 +30,7 @@ Vue.use(VueSocialauth, {
     providers: {
         google: {
             clientId: '333429272007-it580ggnm02d3ibs6dfpdppkruc99fmk.apps.googleusercontent.com',
-            redirectUri: 'http://localhost:8000/auth/google/callback'
+            redirectUri: config.redirectGoogle
         }
     }
 });

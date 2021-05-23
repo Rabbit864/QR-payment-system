@@ -2039,20 +2039,22 @@ vue__WEBPACK_IMPORTED_MODULE_2__.default.use(vuex__WEBPACK_IMPORTED_MODULE_3__.d
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var vue_social_auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-social-auth */ "./node_modules/vue-social-auth/dist/vue-social-auth.es2017.js");
 /* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-axios */ "./node_modules/vue-axios/dist/vue-axios.es5.js");
 /* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var vuetify__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify */ "./node_modules/vuetify/dist/vuetify.js");
-/* harmony import */ var vuetify__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(vuetify__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var vuetify__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify */ "./node_modules/vuetify/dist/vuetify.js");
+/* harmony import */ var vuetify__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(vuetify__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuetify/dist/vuetify.min.css */ "./node_modules/vuetify/dist/vuetify.min.css");
 /* harmony import */ var vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vuetify_dist_vuetify_min_css__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _Store_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Store/index */ "./resources/js/Store/index.js");
-/* harmony import */ var _Router_index__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Router/index */ "./resources/js/Router/index.js");
-/* harmony import */ var _App_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./App.vue */ "./resources/js/App.vue");
+/* harmony import */ var _vue_config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./vue.config */ "./resources/js/vue.config.js");
+/* harmony import */ var _vue_config__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_vue_config__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _Store_index__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Store/index */ "./resources/js/Store/index.js");
+/* harmony import */ var _Router_index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Router/index */ "./resources/js/Router/index.js");
+/* harmony import */ var _App_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./App.vue */ "./resources/js/App.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
@@ -2065,34 +2067,35 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
+
 window.axios.defaults.withCredentials = true;
-window.axios.defaults.baseURL = 'http://localhost:8000/';
+window.axios.defaults.baseURL = (_vue_config__WEBPACK_IMPORTED_MODULE_4___default().baseUrl);
 window.axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
-vue__WEBPACK_IMPORTED_MODULE_7__.default.prototype.$http = (axios__WEBPACK_IMPORTED_MODULE_2___default());
-var token = _Store_index__WEBPACK_IMPORTED_MODULE_4__.default.state.token;
+vue__WEBPACK_IMPORTED_MODULE_8__.default.prototype.$http = (axios__WEBPACK_IMPORTED_MODULE_2___default());
+var token = _Store_index__WEBPACK_IMPORTED_MODULE_5__.default.state.token;
 
 if (token) {
-  vue__WEBPACK_IMPORTED_MODULE_7__.default.prototype.$http.defaults.headers.common.Authorization = token;
+  vue__WEBPACK_IMPORTED_MODULE_8__.default.prototype.$http.defaults.headers.common.Authorization = token;
 }
 
-vue__WEBPACK_IMPORTED_MODULE_7__.default.use((vuetify__WEBPACK_IMPORTED_MODULE_8___default()));
-vue__WEBPACK_IMPORTED_MODULE_7__.default.use((vue_axios__WEBPACK_IMPORTED_MODULE_1___default()), (axios__WEBPACK_IMPORTED_MODULE_2___default()));
-vue__WEBPACK_IMPORTED_MODULE_7__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_9__.default);
-vue__WEBPACK_IMPORTED_MODULE_7__.default.use(vue_social_auth__WEBPACK_IMPORTED_MODULE_0__.default, {
+vue__WEBPACK_IMPORTED_MODULE_8__.default.use((vuetify__WEBPACK_IMPORTED_MODULE_9___default()));
+vue__WEBPACK_IMPORTED_MODULE_8__.default.use((vue_axios__WEBPACK_IMPORTED_MODULE_1___default()), (axios__WEBPACK_IMPORTED_MODULE_2___default()));
+vue__WEBPACK_IMPORTED_MODULE_8__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_10__.default);
+vue__WEBPACK_IMPORTED_MODULE_8__.default.use(vue_social_auth__WEBPACK_IMPORTED_MODULE_0__.default, {
   providers: {
     google: {
       clientId: '333429272007-it580ggnm02d3ibs6dfpdppkruc99fmk.apps.googleusercontent.com',
-      redirectUri: 'http://localhost:8000/auth/google/callback'
+      redirectUri: (_vue_config__WEBPACK_IMPORTED_MODULE_4___default().redirectGoogle)
     }
   }
 });
-var app = new vue__WEBPACK_IMPORTED_MODULE_7__.default({
+var app = new vue__WEBPACK_IMPORTED_MODULE_8__.default({
   el: '#app',
-  vuetify: new (vuetify__WEBPACK_IMPORTED_MODULE_8___default())(),
-  store: _Store_index__WEBPACK_IMPORTED_MODULE_4__.default,
-  router: _Router_index__WEBPACK_IMPORTED_MODULE_5__.default,
+  vuetify: new (vuetify__WEBPACK_IMPORTED_MODULE_9___default())(),
+  store: _Store_index__WEBPACK_IMPORTED_MODULE_5__.default,
+  router: _Router_index__WEBPACK_IMPORTED_MODULE_6__.default,
   components: {
-    App: _App_vue__WEBPACK_IMPORTED_MODULE_6__.default
+    App: _App_vue__WEBPACK_IMPORTED_MODULE_7__.default
   }
 });
 
@@ -2107,6 +2110,19 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_7__.default({
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+/***/ }),
+
+/***/ "./resources/js/vue.config.js":
+/*!************************************!*\
+  !*** ./resources/js/vue.config.js ***!
+  \************************************/
+/***/ ((module) => {
+
+module.exports = {
+  baseUrl: "http://localhost:8000/",
+  redirectGoogle: 'http://localhost:8000/auth/google/callback'
+};
 
 /***/ }),
 
