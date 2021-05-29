@@ -1834,34 +1834,6 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/App.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/App.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _Styles_app_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Styles/app.scss */ "./resources/js/Styles/app.scss");
-/* harmony import */ var _Styles_app_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_Styles_app_scss__WEBPACK_IMPORTED_MODULE_0__);
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "app"
-});
-
-/***/ }),
-
 /***/ "./resources/js/Router/index.js":
 /*!**************************************!*\
   !*** ./resources/js/Router/index.js ***!
@@ -1941,13 +1913,6 @@ var routes = [{
   },
   name: 'showcase',
   beforeEnter: ifAuthenticated
-}, {
-  path: '/products/:id',
-  component: function component() {
-    return __webpack_require__.e(/*! import() */ "resources_js_Pages_CardProduct_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../Pages/CardProduct.vue */ "./resources/js/Pages/CardProduct.vue"));
-  },
-  name: 'cardProduct',
-  beforeEnter: ifAuthenticated
 }];
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (routes);
 
@@ -2014,7 +1979,7 @@ vue__WEBPACK_IMPORTED_MODULE_2__.default.use(vuex__WEBPACK_IMPORTED_MODULE_3__.d
     },
     logout: function logout(_ref2) {
       var commit = _ref2.commit;
-      return new Promise(function (resolve, reject) {
+      return new Promise(function (resolve) {
         commit('logout');
         delete (axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.headers.common.Authorization);
         resolve();
@@ -2089,6 +2054,8 @@ vue__WEBPACK_IMPORTED_MODULE_8__.default.use(vue_social_auth__WEBPACK_IMPORTED_M
     }
   }
 });
+/* eslint-disable no-unused-vars */
+
 var app = new vue__WEBPACK_IMPORTED_MODULE_8__.default({
   el: '#app',
   vuetify: new (vuetify__WEBPACK_IMPORTED_MODULE_9___default())(),
@@ -2127,6 +2094,34 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/App.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/App.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Styles_app_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Styles/app.scss */ "./resources/js/Styles/app.scss");
+/* harmony import */ var _Styles_app_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_Styles_app_scss__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "app"
+});
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!./resources/js/Styles/app.scss":
 /*!****************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!./resources/js/Styles/app.scss ***!
@@ -2144,7 +2139,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "*, :after, :before {\n  box-sizing: border-box;\n}\n\nbody, html, #app, .app {\n  padding: 0;\n  margin: 0;\n  background-color: #fff;\n  text-align: center;\n}\n\na {\n  text-decoration: none;\n}\n\n.container {\n  width: 100%;\n  padding-right: 15px;\n  padding-left: 15px;\n  margin-right: auto;\n  margin-left: auto;\n  max-width: 1140px;\n}\n\n.button-login {\n  color: #fff;\n  background-color: #3490dc;\n  border-color: #3490dc;\n  display: inline-block;\n  margin-top: 25%;\n  display: inline-block;\n  font-weight: 400;\n  text-align: center;\n  vertical-align: middle;\n  padding: 0.375rem 0.75rem;\n  font-size: 0.9rem;\n  line-height: 1.6;\n  border-radius: 0.25rem;\n  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "*,\n:after,\n:before {\n  box-sizing: border-box;\n}\n\nbody,\nhtml,\n#app,\n.app {\n  padding: 0;\n  margin: 0;\n  background-color: #fff;\n  text-align: center;\n}\n\na {\n  text-decoration: none;\n}\n\n.container {\n  width: 100%;\n  padding-right: 15px;\n  padding-left: 15px;\n  margin-right: auto;\n  margin-left: auto;\n  max-width: 1140px;\n}\n\n.button-login {\n  color: #fff;\n  background-color: #3490dc;\n  border-color: #3490dc;\n  display: inline-block;\n  margin-top: 25%;\n  font-weight: 400;\n  text-align: center;\n  vertical-align: middle;\n  padding: 0.375rem 0.75rem;\n  font-size: 0.9rem;\n  line-height: 1.6;\n  border-radius: 0.25rem;\n  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -82982,7 +82977,7 @@ var index = {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_Pages_Login_vue":1,"resources_js_Pages_Dashboard_vue":1,"resources_js_Pages_Showcase_vue":1,"resources_js_Pages_CardProduct_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_Pages_Login_vue":1,"resources_js_Pages_Dashboard_vue":1,"resources_js_Pages_Showcase_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

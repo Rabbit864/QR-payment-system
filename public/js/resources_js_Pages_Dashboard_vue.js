@@ -51,6 +51,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+/*global axios*/
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     NavBar: _Navbar_vue__WEBPACK_IMPORTED_MODULE_0__.default

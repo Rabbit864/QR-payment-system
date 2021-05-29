@@ -117,6 +117,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 
+/*global axios  */
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     NavBar: _Navbar_vue__WEBPACK_IMPORTED_MODULE_1__.default
@@ -144,9 +146,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 })["catch"](function () {
                   console.log("FAILURE!!");
                 });
-                ;
 
-              case 3:
+              case 2:
               case "end":
                 return _context.stop();
             }

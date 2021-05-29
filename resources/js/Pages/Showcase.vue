@@ -28,7 +28,7 @@
 
 <script>
 import NavBar from "./Navbar.vue";
-
+/*global axios  */
 export default {
   components: { NavBar },
   data() {
@@ -44,7 +44,7 @@ export default {
         })
         .catch(function () {
           console.log("FAILURE!!");
-        });;
+        });
     },
   },
   created() {

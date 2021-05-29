@@ -35,7 +35,7 @@ Vue.use(VueSocialauth, {
     }
 });
 
-
+/* eslint-disable no-unused-vars */
 const app = new Vue({
     el: '#app',
     vuetify: new Vuetify(),

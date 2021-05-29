@@ -37,6 +37,7 @@
 </template>
 
 <script>
+/*global axios*/
 import NavBar from "./Navbar.vue";
 
 export default {

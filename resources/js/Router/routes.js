@@ -40,12 +40,6 @@ const routes = [
         component: () => import('../Pages/Showcase.vue'),
         name: 'showcase',
         beforeEnter: ifAuthenticated
-    },
-    {
-        path: '/products/:id',
-        component: () => import('../Pages/CardProduct.vue'),
-        name: 'cardProduct',
-        beforeEnter: ifAuthenticated
     }
 ];
 
