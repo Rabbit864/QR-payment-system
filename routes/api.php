@@ -25,3 +25,7 @@ Route::get('user/{user}/products', [ProductController::class, 'index']);
 
 Route::get('/products/{product}', [ProductController::class, 'show']);
 
+Route::delete('/products/{product}', [ProductController::class, 'delete']);
+
+Route::put('products/{product}', [ProductController::class, 'update']);
+

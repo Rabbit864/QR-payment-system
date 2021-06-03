@@ -116,6 +116,79 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /*global axios  */
 
@@ -125,7 +198,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      products: []
+      products: [],
+      showEditForms: false,
+      editProduct: {
+        name: "",
+        cost: 0,
+        count: 0,
+        description: ""
+      },
+      editIndex: 0,
+      hasError: false,
+      errors: []
     };
   },
   methods: {
@@ -143,8 +226,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   response.data.forEach(function (product) {
                     return _this.products.push(product);
                   });
-                })["catch"](function () {
-                  console.log("FAILURE!!");
+                })["catch"](function (error) {
+                  console.log(error);
+                  this.hasError = true;
+                  this.errors.push(error);
                 });
 
               case 2:
@@ -154,6 +239,58 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    deleteProduct: function deleteProduct(id) {
+      var _this2 = this;
+
+      var url = "api/products/".concat(id);
+      axios["delete"](url).then(function () {
+        var index = _this2.products.findIndex(function (product) {
+          return product.id === id;
+        });
+
+        _this2.products.splice(index, 1);
+      })["catch"](function (error) {
+        console.log(error);
+        _this2.hasError = true;
+
+        _this2.errors.push(error);
+      });
+    },
+    editItem: function editItem(product) {
+      this.editIndex = this.products.indexOf(product);
+      this.editProduct = Object.assign({}, product);
+      this.showEditForms = true;
+    },
+    updateProduct: function updateProduct() {
+      var _this3 = this;
+
+      var url = "api/products/".concat(this.editProduct.id);
+      axios.put(url, {
+        name: this.editProduct.name,
+        cost: this.editProduct.cost,
+        count: this.editProduct.count,
+        description: this.editProduct.description
+      }).then(function (response) {
+        var status = response.data.success;
+
+        if (status) {
+          Object.assign(_this3.products[_this3.editIndex], _this3.editProduct);
+        } else {
+          _this3.hasError = true;
+
+          _this3.errors.push(response.data.message);
+        }
+
+        _this3.showEditForms = false;
+      })["catch"](function (error) {
+        console.log(error);
+        _this3.hasError = true;
+
+        _this3.errors.push(error);
+
+        _this3.showEditForms = false;
+      });
     }
   },
   created: function created() {
@@ -1173,6 +1310,52 @@ var render = function() {
     [
       _c("nav-bar"),
       _vm._v(" "),
+      _vm.hasError
+        ? _c(
+            "v-alert",
+            {
+              staticClass: "mt-2",
+              attrs: { dense: "", outlined: "", type: "error" }
+            },
+            [
+              _c(
+                "v-list",
+                [
+                  _c(
+                    "v-list-item-group",
+                    {
+                      model: {
+                        value: _vm.model,
+                        callback: function($$v) {
+                          _vm.model = $$v
+                        },
+                        expression: "model"
+                      }
+                    },
+                    _vm._l(_vm.errors, function(error, index) {
+                      return _c(
+                        "v-list-item",
+                        { key: index },
+                        [
+                          _c(
+                            "v-list-item-content",
+                            [_c("v-list-item-title", [_vm._v(_vm._s(error))])],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    }),
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
       _c("v-simple-table", { staticClass: "products mt-3" }, [
         _c("caption", [_vm._v("\n      Ваши товары\n    ")]),
         _vm._v(" "),
@@ -1184,7 +1367,9 @@ var render = function() {
             _vm._v(" "),
             _c("th", { staticClass: "text-center" }, [_vm._v("Количество")]),
             _vm._v(" "),
-            _c("th", { staticClass: "text-center" }, [_vm._v("Описание")])
+            _c("th", { staticClass: "text-center" }, [_vm._v("Описание")]),
+            _vm._v(" "),
+            _c("th", { staticClass: "text-center" }, [_vm._v("QR")])
           ])
         ]),
         _vm._v(" "),
@@ -1207,12 +1392,202 @@ var render = function() {
                     alt: "qr"
                   }
                 })
-              ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { depressed: "", color: "error" },
+                      on: {
+                        click: function($event) {
+                          return _vm.deleteProduct(product.id)
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: "fa fa-trash" })]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "td",
+                [
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "primary" },
+                      on: {
+                        click: function($event) {
+                          return _vm.editItem(product)
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: "fa fa-pencil" })]
+                  )
+                ],
+                1
+              )
             ])
           }),
           0
         )
-      ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "v-dialog",
+        {
+          attrs: { persistent: "", "max-width": "600px" },
+          model: {
+            value: _vm.showEditForms,
+            callback: function($$v) {
+              _vm.showEditForms = $$v
+            },
+            expression: "showEditForms"
+          }
+        },
+        [
+          _c(
+            "v-card",
+            [
+              _c("v-card-title", [
+                _c("span", { staticClass: "text-h5" }, [
+                  _vm._v("Редактирование товара")
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "v-card-text",
+                [
+                  _c(
+                    "v-container",
+                    [
+                      _c(
+                        "v-row",
+                        [
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: { label: "Название" },
+                                model: {
+                                  value: _vm.editProduct.name,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.editProduct, "name", $$v)
+                                  },
+                                  expression: "editProduct.name"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: { type: "number", label: "Цена" },
+                                model: {
+                                  value: _vm.editProduct.cost,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.editProduct, "cost", $$v)
+                                  },
+                                  expression: "editProduct.cost"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: { type: "number", label: "Количество" },
+                                model: {
+                                  value: _vm.editProduct.count,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.editProduct, "count", $$v)
+                                  },
+                                  expression: "editProduct.count"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: { label: "Описание" },
+                                model: {
+                                  value: _vm.editProduct.description,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.editProduct,
+                                      "description",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "editProduct.description"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
+                [
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "blue darken-1", text: "" },
+                      on: {
+                        click: function($event) {
+                          _vm.showEditForms = false
+                        }
+                      }
+                    },
+                    [_vm._v("\n          Закрыть\n        ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "blue darken-1", text: "" },
+                      on: { click: _vm.updateProduct }
+                    },
+                    [_vm._v("\n          Сохранить\n        ")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
     ],
     1
   )

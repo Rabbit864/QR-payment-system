@@ -8,7 +8,7 @@
     <link rel="shortcut icon" href="logo.png" type="image/x-icon">
     <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>{{env('APP_NAME')}}</title>
 </head>
 <body>

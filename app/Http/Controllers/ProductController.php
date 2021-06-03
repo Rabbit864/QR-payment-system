@@ -52,7 +52,7 @@ class ProductController extends Controller
     public function index(User $user)
     {
         $products = Product::where('user_id', $user->id)->get();
-        foreach($products as $product){
+        foreach ($products as $product) {
             $url = env("QR_URL") . "/products/{$product->id}";
             $qr = QrCode::format('png')->size(100)->generate($url);
             $qr = base64_encode($qr);
@@ -67,4 +67,26 @@ class ProductController extends Controller
         return response()->json($product);
     }
 
+    public function delete(Product $product)
+    {
+        $product->delete();
+
+        return response(['success' => true]);
+    }
+
+    public function update(Request $request, Product $product)
+    {
+        $result = $product->update([
+            'name' => $request->name,
+            'cost' => $request->cost,
+            'count' => $request->count,
+            'description' => $request->description
+        ]);
+
+        if (!$result) {
+            return response(['success' => false, 'message' => 'Не удалось обновить товар']);
+        }
+
+        return response(['success' => true]);
+    }
 }
