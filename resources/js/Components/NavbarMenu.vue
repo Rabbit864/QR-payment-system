@@ -19,25 +19,24 @@
 
 <script>
 export default {
-  name: "tabAlignments",
+  name: 'tabAlignments',
   computed: {
     currentUser() {
       return this.$store.state.user;
     },
-    isLoggedIn : function(){ return this.$store.getters.isLoggedIn}
+    isLoggedIn() { return this.$store.getters.isLoggedIn; },
   },
   methods: {
     logout() {
       this.$store
-        .dispatch("logout")
+        .dispatch('logout')
         .then(() => {
-            this.$router.push("/");
+          this.$router.push('/');
         })
         .catch((err) => {
-          console.log({ err: err });
+          console.log({ err });
         });
     },
   },
 };
 </script>
-

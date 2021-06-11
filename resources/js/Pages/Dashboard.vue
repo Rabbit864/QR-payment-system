@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <nav-bar></nav-bar>
+    <nav-bar-menu></nav-bar-menu>
     <v-file-input
       chips
       truncate-length="19"
@@ -10,38 +10,17 @@
       class="mt-5"
     ></v-file-input>
     <v-btn elevation="2" outlined @click="generate()">Сгенирировать</v-btn>
-
-    <v-simple-table class="products mt-3" v-if="products.length > 0">
-      <caption>
-        Ваши загруженные товары
-      </caption>
-      <thead>
-        <tr>
-          <th class="text-center">Название</th>
-          <th class="text-center">Стоимость</th>
-          <th class="text-center">Количество</th>
-          <th class="text-center">Описание</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="product in products" :key="product.id">
-          <td>{{ product.name }}</td>
-          <td>{{ product.cost }}</td>
-          <td>{{ product.count }}</td>
-          <td>{{ product.description }}</td>
-          <td><img :src="`data:image/png;base64,${product.qr}`" alt="qr" /></td>
-        </tr>
-      </tbody>
-    </v-simple-table>
+    <product-table v-if="products.length > 0" :products="products"></product-table>
   </div>
 </template>
 
 <script>
-/*global axios*/
-import NavBar from "./Navbar.vue";
+/* global axios */
+import NavBarMenu from '../Components/NavbarMenu.vue';
+import ProductTable from '../Components/ProductTable.vue';
 
 export default {
-  components: { NavBar },
+  components: { NavBarMenu, ProductTable },
   data() {
     return {
       files: [],
@@ -50,17 +29,16 @@ export default {
   },
   methods: {
     generate() {
-      let formData = new FormData();
-      formData.append("file", this.files);
-      formData.append("user_id", this.$store.state.user.id);
+      const formData = new FormData();
+      formData.append('file', this.files);
+      formData.append('user_id', this.$store.state.user.id);
       axios
-        .post("api/generateProducts", formData)
+        .post('api/generateProducts', formData)
         .then((response) => {
           response.data.forEach((product) => this.products.push(product));
         })
-        .catch(function () {});
+        .catch(() => {});
     },
   },
 };
 </script>
-

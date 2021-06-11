@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import "./Styles/app.scss";
+import './Styles/app.scss';
 
 export default {
-  name: "app",
+  name: 'app',
 };
 </script>

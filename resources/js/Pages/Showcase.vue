@@ -1,50 +1,12 @@
 <template>
   <div class="container">
-    <nav-bar></nav-bar>
-    <v-alert dense outlined type="error" class="mt-2" v-if="hasError">
-      <v-list>
-        <v-list-item-group v-model="model">
-          <v-list-item v-for="(error, index) in errors" :key="index">
-            <v-list-item-content>
-              <v-list-item-title>{{ error }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
-    </v-alert>
-    <v-simple-table class="products mt-3">
-      <caption>
-        Ваши товары
-      </caption>
-      <thead>
-        <tr>
-          <th class="text-center">Название</th>
-          <th class="text-center">Стоимость</th>
-          <th class="text-center">Количество</th>
-          <th class="text-center">Описание</th>
-          <th class="text-center">QR</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="product in products" :key="product.id">
-          <td>{{ product.name }}</td>
-          <td>{{ product.cost }}</td>
-          <td>{{ product.count }}</td>
-          <td>{{ product.description }}</td>
-          <td><img :src="`data:image/png;base64,${product.qr}`" alt="qr" /></td>
-          <td>
-            <v-btn depressed color="error" @click="deleteProduct(product.id)">
-              <i class="fa fa-trash"></i>
-            </v-btn>
-          </td>
-          <td>
-            <v-btn color="primary" @click="editItem(product)">
-              <i class="fa fa-pencil"></i>
-            </v-btn>
-          </td>
-        </tr>
-      </tbody>
-    </v-simple-table>
+    <nav-bar-menu></nav-bar-menu>
+    <danger-alert v-if="hasError" :errors="errors"></danger-alert>
+    <product-table
+      :products="products"
+      :editItem="editItem"
+      :deleteProduct="deleteProduct"
+    ></product-table>
     <v-dialog v-model="showEditForms" persistent max-width="600px">
       <v-card>
         <v-card-title>
@@ -100,19 +62,21 @@
 </template>
 
 <script>
-import NavBar from "./Navbar.vue";
-/*global axios  */
+import NavBarMenu from '../Components/NavbarMenu.vue';
+import ProductTable from '../Components/ProductTableAction.vue';
+import DangerAlert from '../Components/DangerAlert.vue';
+/* global axios  */
 export default {
-  components: { NavBar },
+  components: { NavBarMenu, ProductTable, DangerAlert },
   data() {
     return {
       products: [],
       showEditForms: false,
       editProduct: {
-        name: "",
+        name: '',
         cost: 0,
         count: 0,
-        description: "",
+        description: '',
       },
       editIndex: 0,
       hasError: false,
@@ -127,11 +91,16 @@ export default {
         .then((response) => {
           response.data.forEach((product) => this.products.push(product));
         })
-        .catch(function (error) {
+        .catch((error) => {
           console.log(error);
           this.hasError = true;
           this.errors.push(error);
         });
+    },
+    editItem(product) {
+      this.editIndex = this.products.indexOf(product);
+      this.editProduct = { ...product };
+      this.showEditForms = true;
     },
     deleteProduct(id) {
       const url = `api/products/${id}`;
@@ -146,11 +115,6 @@ export default {
           this.hasError = true;
           this.errors.push(error);
         });
-    },
-    editItem(product) {
-      this.editIndex = this.products.indexOf(product);
-      this.editProduct = Object.assign({}, product);
-      this.showEditForms = true;
     },
     updateProduct() {
       const url = `api/products/${this.editProduct.id}`;

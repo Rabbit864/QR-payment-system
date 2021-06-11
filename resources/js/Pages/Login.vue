@@ -11,34 +11,32 @@
 
 <script>
 export default {
-  name: "login",
+  name: 'login',
   data() {
     return {};
   },
   methods: {
     AuthProvider(provider) {
-      var self = this;
+      const self = this;
       this.$auth
         .authenticate(provider)
         .then((response) => {
           self.SocialLogin(provider, response);
         })
         .catch((err) => {
-          console.log({ err: err });
+          console.log({ err });
         });
     },
     SocialLogin(provider, response) {
       this.$store
-        .dispatch("login", response)
+        .dispatch('login', response)
         .then(() => {
-          this.$router.push("/dashboard");
+          this.$router.push('/dashboard');
         })
         .catch((err) => {
-          console.log({ err: err });
+          console.log({ err });
         });
     },
   },
 };
 </script>
-
-
