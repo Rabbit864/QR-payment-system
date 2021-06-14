@@ -15,4 +15,19 @@ class Product extends Model
     {
         $this->belongsTo(User::class);
     }
+
+    public static function hasProduct($id, $countProduct)
+    {
+        $product = Product::where('id',$id)->get('count');
+        return $product[0]->count >= $countProduct;
+    }
+
+    public static function removeCountProduct($id, $countProduct)
+    {
+        $product = Product::find($id);
+        $newCount = $product->count - $countProduct;
+        $product->update([
+          'count' => $newCount
+        ]);
+    }
 }

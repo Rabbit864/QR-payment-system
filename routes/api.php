@@ -29,3 +29,5 @@ Route::delete('/products/{product}', [ProductController::class, 'delete']);
 
 Route::put('products/{product}', [ProductController::class, 'update']);
 
+Route::put('basket/update', [ProductController::class, 'handlingBasket']);
+

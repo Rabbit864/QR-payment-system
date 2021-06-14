@@ -89,4 +89,19 @@ class ProductController extends Controller
 
         return response(['success' => true]);
     }
+
+    public function handlingBasket(Request $request)
+    {
+        $cart = $request->cart;
+        \Log::alert($cart);
+        foreach($cart as $product){
+            \Log::alert($product["id"]);
+            if(!Product::hasProduct($product["id"], $product["quantity"])){
+                return response(['success' => false, 'message' => 'Данного товара уже нет в наличии']);
+            }
+            Product::removeCountProduct($product["id"], $product["quantity"]);
+        }
+
+        return response(['success' => true]);
+    }
 }
